@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.0-(23/Oct/2024)
+// @version     3.0-(24/Oct/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -10,6 +10,7 @@
 // @grant       GM_getResourceText
 // @require     https://raw.githubusercontent.com/google/diff-match-patch/cd60d246aecf871367313c7cf6dc8814af32c5e3/javascript/diff_match_patch.js#sha256=d422c483b926ca7cea768a03c8f0f26ebc69d5041e3deb550d2709dd40fa16ea
 // @resource    wingsio_index_html              https://wings.io#sha256=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8
+// @resource    wingsio_index_html_mirror       https://raw.githubusercontent.com/ragavpr/overrides-wings.io/1a053b9883321a704b64d4aff5a6ee59056d9643/index.html#sha256sum=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8 
 // @resource    default_profanity_blacklist     https://raw.githubusercontent.com/mogade/badwords/refs/heads/master/en.txt
 // @resource    patch_dark_theme                https://raw.githubusercontent.com/ragavpr/overrides-wings.io/b5340d08b8efc4a241512ead9e11fc28b9b51aff/diff.patch#sha256sum=44bbc46dfd03a7bba7c16f98150baea6f2d3b136ebe52f166a5834c58d376470
 // @resource    patch_profanity_filter          https://raw.githubusercontent.com/ragavpr/overrides-wings.io/d31bc08e9e58d80f59040dba60cfe7509670b1b4/diff.patch#sha256sum=69e9f1ef323baeb8aac7568ad9e430469def3319442b1e4f60380bd23dde41e8
@@ -23,13 +24,11 @@
 
 (function () {
   //EDITABLE REGION
-
-  //Additional Custom Patches
   const patches = {
     dark_theme: true,
     profanity_filter: true,
     always_show_nick_input: false,
-    disable_shake: true,
+    disable_shake: false,
     mark_bots_with_emoji: false,
     mark_bots_with_color: false,
     remove_leaderboard_limit: false,
@@ -44,8 +43,8 @@
   //END OF EDITABLE REGION
 
   const profanity_filter_extension = `
-  let profanity_regex_blacklist=['${[...(GM_getResourceText('default_profanity_blacklist').split("\n")), ...profanity_regex_blacklist].join("','")}"'];
-  let profanity_regex_whitelist=['${profanity_regex_whitelist.join("','")}"'];
+  let profanity_regex_blacklist=\`${[...profanity_regex_blacklist, ...(GM_getResourceText('default_profanity_blacklist').split("\n"))].toString()}\`.split(',').filter(str => str.length > 0);
+  let profanity_regex_whitelist=\`${profanity_regex_whitelist.toString()}\`.split(',').filter(str => str.length > 0);
   const debug_show_filtered_profanity=${settings.debug_profanity_filter_show_filtered};
 
   profanity_regex_blacklist = profanity_regex_blacklist.map(regex_str => new RegExp(regex_str, 'ig'));
@@ -66,7 +65,8 @@
     const dmp = new diff_match_patch();
     dmp.Match_Distance = Infinity;
 
-    let str_html = GM_getResourceText("wingsio_index_html");
+    //let str_html = GM_getResourceText("wingsio_index_html"); // Remove SHA256 in the @resource tag to bypass SRI check and get latest version
+    let str_html = GM_getResourceText("wingsio_index_html_mirror"); // Breaking changes in the latest version may cause unwanted behavior
 
     let patch_list = [];
     for(const patch in patches)
@@ -76,22 +76,23 @@
     const total_patches = result[1].length;
     const successful_patches = result[1].filter(res => res).length;
 
-    console.log(`${successful_patches} / ${total_patches} patches applied successfully`);
+    if(successful_patches == total_patches) console.log('All patches applied successfully');
     if(successful_patches < total_patches) console.error('Failed to apply some patches');
 
-    if(patches.profanity_filter) str_html = str_html.replace('<script>', `<script>${profanity_filter_extension}`);
+    str_html = result[0];
+    if(patches.profanity_filter) str_html = str_html.replace('(function(w,x,s){', profanity_filter_extension+'(function(w,x,s){');
 
     return str_html;
   }
+  var patched_page = getPatchedPage();
 
   var observer = new MutationObserver(mutationRecords => {
     mutationRecords.every( record => {
       if (record.addedNodes[0]) {
         document.write('');
         observer.disconnect();
-        document.write(getPatchedPage());
+        document.write(patched_page);
         document.close();
-        //document.querySelector("#openModal").remove();
         return false
       }
       return true
@@ -102,5 +103,4 @@
     childList: true,
     subtree: true
   });
-
 })();
