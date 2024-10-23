@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         wings.io Patches
 // @namespace    http://tampermonkey.net/
-// @version      1.1-(22/Oct/2024)
+// @version      2.0-(22/Oct/2024)
 // @description  Patches are designed to run on load, make necessary changes and reload
 // @author       ⟐Ragav
 // @icon         https://wings.io/images/favicon.png
@@ -10,10 +10,10 @@
 // @grant        none
 // @license      AGPL3
 // ==/UserScript==
-  
+
 (function () {
   //EDITABLE REGION
-  
+
   //Default wings.io Patches
   const default_Gradient = true;
   const default_drawClouds = true;
@@ -23,17 +23,29 @@
   const default_drawItems = true;
   const default_drawTrails = true;
   // const default_drawSplashes = true //Not boolean skipping
-  
+
   //Additional Custom Patches
+  const dark_theme = true;
+  const enable_splashes_in_dark_theme = false; //sprites only designed for light-theme
+
   const filter_names_with_profanity = true;
+
   const mark_bots_with_emoji = false;
   const highlight_bots_names = false;
+
   const always_show_nick_input = false;
-  
+
   const max_leaderboard = 10; //-1 to disable limit
   const disable_you_under_leaderboard = false; //true if no-limit for leaderboard
-  
+
   const profanity_filter_character = "✲";
+
+  //DEBUG SETTINGS - Keep them disabled
+  const debug_show_filtered_profanity = false;
+
+  const profanity_regex_whitelist = [
+
+  ];
   const profanity_regex_blacklist = [
     '^[a@][s\\$][s\\$]$',
     '[a@][s\\$][s\\$]h[o0][l1][e3][s\\$]?',
@@ -108,19 +120,13 @@
     '[s\\$]punk[s\\$]?',
     '[t\\+]w[a@][t\\+][s\\$]?',
   ];
-  const profanity_regex_whitelist = [
-  
-  ];
-  
-  //DEBUG SETTINGS - Keep them disabled
-  const debug_show_filtered_profanity = false;
-  
   //END OF EDITABLE REGION
+
   const append = `
   let profanity_regex_blacklist=['${profanity_regex_blacklist.join("','")}"'];
   let profanity_regex_whitelist=['${profanity_regex_whitelist.join("','")}"'];
   const debug_show_filtered_profanity=${debug_show_filtered_profanity};
-  
+
   profanity_regex_blacklist = profanity_regex_blacklist.map(regex_str => new RegExp(regex_str, 'ig'));
   profanity_regex_whitelist = profanity_regex_whitelist.map(regex_str => new RegExp(regex_str, 'ig'));
   function filter_name(name) {
@@ -134,7 +140,7 @@
       }
       return name;
   };`;
-  
+
   function combineScript(a) {
     //wings.io effects, apply default preference
     if (!default_Gradient) a = a.replace("tb=!0", "tb=0");
@@ -144,15 +150,15 @@
     if (!default_drawSun) a = a.replace("qb=!0", "qb=0");
     if (!default_drawItems) a = a.replace("rb=!0", "rb=0");
     if (!default_drawTrails) a = a.replace("Ya=!0", "Ya=0");
-  
+
     //Custom Patches
     if (always_show_nick_input) a = a.replace('s("#nickInput").hide(),', "");
-  
+
     if (mark_bots_with_emoji || filter_names_with_profanity) {
       a = a.replace("C.setIsBot(p),", "");
       a = a.replace("C.setName(O)", "C.setIsBot(p);C.setName(O)");
     }
-  
+
     if (mark_bots_with_emoji)
       a = a.replace(
         "this.name=c;",
@@ -160,7 +166,7 @@
       );
     if (filter_names_with_profanity)
       a = append + a.replace("this.name=c;", "this.name=filter_name(c);");
-  
+
     if (highlight_bots_names) {
       a = a.replace(
         ':"rgba(255,220,0,1.0)"',
@@ -171,29 +177,64 @@
         'a.fillStyle=b.isBot?"rgba(60,255,0,1.0)":"rgba(255,255,255,1.0)"'
       );
     }
-  
+
     if (max_leaderboard < 0) a = a.replace("10<m&&(m=10);", "");
     else if (max_leaderboard != 10)
       a = a.replace(
         "10<m&&(m=10);",
         `${max_leaderboard}<m&&(m=${max_leaderboard});`
       );
-  
+
     if (disable_you_under_leaderboard || max_leaderboard < 0)
       a = a.replace("a.drawImage(r,n,f+5)", "");
-  
+
+    if (dark_theme) {
+      //Don't even try
+      if(!enable_splashes_in_dark_theme) a = a.replace("b,f,d,a){","b,f,d,a){return;");
+      a = a.replace("9,188,255,1.0","0,56,77,0.5");
+      a = a.replace("8,164,254,1.0","0,48,76,0.5");
+      a = a.replace("7,142,252,1.0","1,42,76,0.5");
+      a = a.replace("7,142,252,1.0","1,42,76,0.5");
+      a = a.replace("0,132,232,1.0","0,43,77,0.5");
+      a = a.replace("0,90,190,1.0","0,24,51,0.5");
+      a = a.replace("190,227,249,","39,62,73,");
+      a = a.replace("190,227,249,","39,62,73,");
+      a = a.replace("179,222,250,","47,72,85,");
+      a = a.replace("179,222,250,","47,72,85,");
+      a = a.replace("l=c=1,","l=1,c=0.8,");
+      a = a.replace("c=.8)","c=.6)");
+      a = a.replace('m)+",231,252,1.0','m-149)+",48,67,1.0');
+      a = a.replace(`f)+
+",145,202,1.0`,'f-35)+",16,22,1.0');
+      a = a.replace('#62bae2','#041622');
+      a = a.replace(',"rgba(255,255,255,0.4)"',',"rgba(160,160,160,0.4)"');
+      a = a.replace('255,255,255,0.13','160,160,160,0.13');
+      a = a.replace('255,255,255,0.05','160,160,160,0.05');
+      a = a.replace('.2,"rgba(255,255,255,0','.2,"rgba(160,160,160,0');
+      a = a.replace('a.fillStyle="rgba(255,255,255,1)";','a.fillStyle="rgba(160,160,160,1)";')
+      a = a.replace('if(u.isSpaceWars()){','{');
+      a = a.replace('if(u.isSpaceWars())f','f');
+      a = a.replace('w(a);else ','w(a);if(!u.isSpaceWars()) ');
+      a = a.replace('background-color: #FFF;','background-color: #000;color: #FFF;');
+      a = a.replace('background-color: #FFF;','background-color: #000;color: #FFF;');
+      a = a.replace('background-color: #FFF;','background-color: #000;color: #FFF;');
+      a = a.replace('background-color: #FFF;','background-color: #000;color: #FFF;');
+      a = a.replace('PI);a.fill()','PI);a.fill();let craters=[[-30,-15,15],[-20,25,10],[10,0,12]];a.fillStyle = "rgba(145,145,145,1)";for(const [x, y, r] of craters){a.beginPath();a.arc(c+x, b+y, r, 0, 2 * Math.PI);a.fill();}');
+      //GM_addStyle("html { background: #041622 !important; } .text-muted { color: #aaa !important; }");
+    }
+
     return a;
   }
-  
+
   if (window.top != window.self || (window.iWings && window.iWings.enabled)) {
     if (window.iWings && window.iWings.versions)
-      window.iWings.versions.push("script v1.1-(22/Oct/2024)");
+      window.iWings.versions.push("script-j6dh");
     return;
   }
   if (!window.iWings)
-    window.iWings = { enabled: true, versions: ["script v1.1-(22/Oct/2024)"] };
+    window.iWings = { enabled: true, versions: ["script-j6dh"] };
   var isFirefox = /Firefox/.test(navigator.userAgent);
-  
+
   if (isFirefox) {
     var scriptChanged = false;
     window.addEventListener(
