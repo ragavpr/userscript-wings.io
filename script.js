@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.0-(24/Oct/2024)
+// @version     3.1-(24/Oct/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
 // @match       https://wings.io/
+// @match       https://wings.io/#*
 // @run-at      document-start
 // @grant       GM_getResourceText
 // @require     https://raw.githubusercontent.com/google/diff-match-patch/cd60d246aecf871367313c7cf6dc8814af32c5e3/javascript/diff_match_patch.js#sha256=d422c483b926ca7cea768a03c8f0f26ebc69d5041e3deb550d2709dd40fa16ea
 // @resource    wingsio_index_html              https://wings.io#sha256=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8
-// @resource    wingsio_index_html_archive      https://raw.githubusercontent.com/ragavpr/overrides-wings.io/1a053b9883321a704b64d4aff5a6ee59056d9643/index.html#sha256=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8 
+// @resource    wingsio_index_html_archive      https://raw.githubusercontent.com/ragavpr/overrides-wings.io/1a053b9883321a704b64d4aff5a6ee59056d9643/index.html#sha256=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8
 // @resource    default_profanity_blacklist     https://raw.githubusercontent.com/mogade/badwords/refs/heads/master/en.txt
 // @resource    patch_dark_theme                https://raw.githubusercontent.com/ragavpr/overrides-wings.io/64f94d68c8414da4f5a198d5b54e11cc5b89ee23/diff.patch#sha256=35e84754d59ca2256588150fe1a0de3e5bc28eeb8fc6ba2977089addb1f3e322
 // @resource    patch_profanity_filter          https://raw.githubusercontent.com/ragavpr/overrides-wings.io/d31bc08e9e58d80f59040dba60cfe7509670b1b4/diff.patch#sha256=69e9f1ef323baeb8aac7568ad9e430469def3319442b1e4f60380bd23dde41e8
