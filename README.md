@@ -6,7 +6,7 @@ and more...
 
 ##Dark Theme
 - Enabled by default.
-- Bombs not visible in the night goodluck.
+- Bombs may not be visible in the night good-luck.
 
 ##Profanity Filter
 - Enabled by default.
@@ -18,7 +18,10 @@ and more...
 - Other patches are disabled by default, you need to edit this script to enable them.
 - Remote resources will not fail, unless it is removed.
 - There are no hacks in this script, only features to make game-play safer and better.
-- Script will not execute if the game gets updated due to SRI, bypass it by removing SHA256 in @resource header at the top.
+
+##Supported Version
+- Tested Game Version: 10/Oct/2024, using this script forces this version.
+- Use latest version by removing SHA256 (SRI check) in @resource tag for `wingsio_index_html` at the top and disabling mirror.
 
 ##Disclaimer
 - Not affiliated in any way with wings.io, all rights reserved to wings.io.
