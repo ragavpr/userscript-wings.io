@@ -20,7 +20,7 @@
 // @resource    patch_mark_bots_with_emoji      https://raw.githubusercontent.com/ragavpr/overrides-wings.io/33266812371cd9c631d0c00a4ec1071243c96834/diff.patch#sha256=44df21c987f4d68f46a8a0b076ca91a83119ce600d079c54b00f4d925e71c406
 // @resource    patch_mark_bots_with_color      https://raw.githubusercontent.com/ragavpr/overrides-wings.io/13c83c7ea7d81ef34c8b62fa01b339d410f74f02/diff.patch#sha256=5815ad548fee2bf94bced7ebef45e00b170bf00826bd6a43cad50411a7a95d53
 // @resource    patch_remove_leaderboard_limit  https://raw.githubusercontent.com/ragavpr/overrides-wings.io/e7d048bcfdd8b4617071b72d304d052c393aac5e/diff.patch#sha256=1543dfd89d2517af4aace201addb57fdd8d2f11559d8295422040f7fb5f32863
-// @license     AGPL3
+// @license     AGPL-3.0-or-later
 // ==/UserScript==
 
 (function () {
