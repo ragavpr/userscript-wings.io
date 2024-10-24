@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.1-(24/Oct/2024)
+// @version     3.2-(24/Oct/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -24,29 +24,37 @@
 // ==/UserScript==
 
 (function () {
-  //EDITABLE REGION
-  const patches = {
-    dark_theme: true,
-    profanity_filter: true,
-    always_show_nick_input: false,
-    disable_shake: false,
-    mark_bots_with_emoji: false,
-    mark_bots_with_color: false,
-    remove_leaderboard_limit: false,
-  };
+  // EDITABLE REGION
+
+  // Comment to disable patch
+  const patches = [
+    'dark_theme',
+    'profanity_filter',
+    // 'always_show_nick_input',
+    // 'disable_shake',
+    // 'mark_bots_with_emoji',
+    // 'mark_bots_with_color',
+    // 'remove_leaderboard_limit',
+  ];
+
   const settings = {
-    // Game Version: 10/Oct/2024
+    // Game Version - 10/Oct/2024
     wingsio_use_archive: true,
     profanity_filter_character: "✲",
     debug_profanity_filter_show_filtered: false,
   }
 
-  const profanity_regex_blacklist = [];
-  const profanity_regex_whitelist = [];
-  //END OF EDITABLE REGION
+  const profanity_regex_blacklist = [
+
+    ...(GM_getResourceText('default_profanity_blacklist').split("\n")),
+  ];
+  const profanity_regex_whitelist = [
+
+  ];
+  // END OF EDITABLE REGION
 
   const profanity_filter_extension = `
-  let profanity_regex_blacklist=\`${[...profanity_regex_blacklist, ...(GM_getResourceText('default_profanity_blacklist').split("\n"))].toString()}\`.split(',').filter(str => str.length > 0);
+  let profanity_regex_blacklist=\`${profanity_regex_blacklist.toString()}\`.split(',').filter(str => str.length > 0);
   let profanity_regex_whitelist=\`${profanity_regex_whitelist.toString()}\`.split(',').filter(str => str.length > 0);
   const debug_show_filtered_profanity=${settings.debug_profanity_filter_show_filtered};
 
@@ -68,20 +76,15 @@
     const dmp = new diff_match_patch();
     dmp.Match_Distance = Infinity;
 
-    let str_html = GM_getResourceText(settings.wingsio_use_archive ? "wingsio_index_html_archive" : "wingsio_index_html");
+    let result, str_html = GM_getResourceText(settings.wingsio_use_archive ? "wingsio_index_html_archive" : "wingsio_index_html");
 
     let list_patches = [];
-    for(const patch in patches) if(patches[patch]) list_patches.push(...(dmp.patch_fromText(GM_getResourceText('patch_'+patch))));
+    for(const patch of patches) list_patches.push(...(dmp.patch_fromText(GM_getResourceText('patch_'+patch))));
 
-    const result = dmp.patch_apply(list_patches, str_html);
-    const total_patches = result[1].length;
-    const successful_patches = result[1].filter(res => res).length;
+    [str_html, result] = dmp.patch_apply(list_patches, str_html);
+    if(patches.includes('profanity_filter')) str_html = str_html.replace('(function(w,x,s){', profanity_filter_extension+'(function(w,x,s){');
 
-    if(successful_patches == total_patches) console.log('All patches applied successfully');
-    if(successful_patches < total_patches) console.error('Failed to apply some patches');
-
-    str_html = result[0];
-    if(patches.profanity_filter) str_html = str_html.replace('(function(w,x,s){', profanity_filter_extension+'(function(w,x,s){');
+    console.log(result.every(Boolean) ? 'All patches applied successfully' : 'Failed to apply some patches');
 
     return str_html;
   }
