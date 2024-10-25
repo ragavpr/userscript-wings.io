@@ -26,8 +26,7 @@ and more...
 - There are no hacks in this script, only features to make game-play safer and better.
 
 ## Supported Version
-- Tested Game Version: 10/Oct/2024, using this script forces this version.
-- Use latest version by removing SHA256 (SRI check) in @resource tag for `wingsio_index_html` at the top and disabling mirror.
+- Tested Game Version: 10/Oct/2024.
 
 ## Disclaimer
 - Not affiliated in any way with wings.io, all rights reserved to wings.io.
