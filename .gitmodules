@@ -1,0 +1,28 @@
+[submodule "feat-dark-theme"]
+	path = patches/feat-dark-theme
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = feat-dark-theme
+[submodule "feat-profanity-filter"]
+	path = patches/feat-profanity-filter
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = feat-profanity-filter
+[submodule "mod-always-show-nickinput"]
+	path = patches/mod-always-show-nickinput
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = mod-always-show-nickinput
+[submodule "mod-disable-shake"]
+	path = patches/mod-disable-shake
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = mod-disable-shake
+[submodule "mod-mark-bots-with-color"]
+	path = patches/mod-mark-bots-with-color
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = mod-mark-bots-with-color
+[submodule "mod-mark-bots-with-emoji"]
+	path = patches/mod-mark-bots-with-emoji
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = mod-mark-bots-with-emoji
+[submodule "mod-remove-leaderboard-limit"]
+	path = patches/mod-remove-leaderboard-limit
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = mod-remove-leaderboard-limit
