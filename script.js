@@ -30,10 +30,10 @@
   const patches = [
     'feat-dark-theme',
     'feat-profanity-filter',
-    // 'mod-always-show-nick-input',
+    // 'mod-always-show-nickinput',
     // 'mod-disable-shake',
-    // 'mod-mark-bots-with-emoji',
     // 'mod-mark-bots-with-color',
+    // 'mod-mark-bots-with-emoji',
     // 'mod-remove-leaderboard-limit',
   ];
 
