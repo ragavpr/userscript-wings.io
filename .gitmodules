@@ -26,3 +26,7 @@
 	path = patches/mod-remove-leaderboard-limit
 	url = https://github.com/ragavpr/overrides-wings.io
 	branch = mod-remove-leaderboard-limit
+[submodule "source"]
+	path = source
+	url = https://github.com/ragavpr/overrides-wings.io
+	branch = archive
