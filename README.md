@@ -26,7 +26,7 @@ and more...
 - There are no hacks in this script, only features to make game-play safer and better.
 
 ## Supported Version
-- Tested Game Version: 10/Oct/2024.
+- Game Version: 10/Oct/2024.
 
 ## Disclaimer
 - Not affiliated in any way with wings.io, all rights reserved to wings.io.
