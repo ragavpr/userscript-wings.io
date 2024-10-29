@@ -16,6 +16,7 @@ and more...
 
 ## Other Patches
 - Change name during respawn window.
+- Colorful Long Rainbow Trail.
 - Disable only the shake effect.
 - Mark bots with icon and/or color.
 - Remove leaderboard limit.

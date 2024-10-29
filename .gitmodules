@@ -10,6 +10,10 @@
 	path = patches/mod-always-show-nickinput
 	url = git@github.com:ragavpr/overrides-wings.io
 	branch = mod-always-show-nickinput
+[submodule "mod-colorful-trail"]
+	path = patches/mod-colorful-trail
+	url = git@github.com:ragavpr/overrides-wings.io
+	branch = mod-colorful-trail
 [submodule "mod-disable-shake"]
 	path = patches/mod-disable-shake
 	url = git@github.com:ragavpr/overrides-wings.io

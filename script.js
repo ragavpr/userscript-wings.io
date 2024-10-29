@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.4-(25/Oct/2024)
+// @version     3.5-(29/Oct/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -16,6 +16,7 @@
 // @resource    feat-dark-theme                 https://gw6mc32y.pages.dev/patches/feat-dark-theme/patch.diff#sha256=35e84754d59ca2256588150fe1a0de3e5bc28eeb8fc6ba2977089addb1f3e322
 // @resource    feat-profanity-filter           https://gw6mc32y.pages.dev/patches/feat-profanity-filter/patch.diff#sha256=69e9f1ef323baeb8aac7568ad9e430469def3319442b1e4f60380bd23dde41e8
 // @resource    mod-always-show-nickinput       https://gw6mc32y.pages.dev/patches/mod-always-show-nickinput/patch.diff#sha256=e9ace3789b4fd92b32878e7bc2ba382ce9465d9cba0bcff5e7bc07d199553983
+// @resource    mod-colorful-trail              https://gw6mc32y.pages.dev/patches/mod-colorful-trail/patch.diff#sha256=6219cbf04c55b814502f98f4a7a11e0b08703d1661cb5356774521be598b0fa6
 // @resource    mod-disable-shake               https://gw6mc32y.pages.dev/patches/mod-disable-shake/patch.diff#sha256=e75676367ef61ec6ca486831335c839c23a086b412a3906f7e5c7057a35772d5
 // @resource    mod-mark-bots-with-color        https://gw6mc32y.pages.dev/patches/mod-mark-bots-with-color/patch.diff#sha256=5815ad548fee2bf94bced7ebef45e00b170bf00826bd6a43cad50411a7a95d53
 // @resource    mod-mark-bots-with-emoji        https://gw6mc32y.pages.dev/patches/mod-mark-bots-with-emoji/patch.diff#sha256=44df21c987f4d68f46a8a0b076ca91a83119ce600d079c54b00f4d925e71c406
@@ -31,6 +32,7 @@
     'feat-dark-theme',
     'feat-profanity-filter',
     // 'mod-always-show-nickinput',
+    // 'mod-colorful-trail',
     // 'mod-disable-shake',
     // 'mod-mark-bots-with-color',
     // 'mod-mark-bots-with-emoji',
