@@ -6,6 +6,10 @@
 	path = patches/feat-profanity-filter
 	url = git@github.com:ragavpr/overrides-wings.io
 	branch = feat-profanity-filter
+[submodule "feat-server-ping"]
+	path = patches/feat-server-ping
+	url = git@github.com:ragavpr/overrides-wings.io
+	branch = feat-server-ping
 [submodule "mod-always-show-nickinput"]
 	path = patches/mod-always-show-nickinput
 	url = git@github.com:ragavpr/overrides-wings.io

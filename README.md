@@ -14,6 +14,11 @@ and more...
 - You can still add regex/strings to the blacklist. (`profanity_regex_blacklist` array)
 - Whitelist can be used to override the blacklist. (`profanity_regex_whitelist` array)
 
+## Display Connection Info
+- Enabled by default.
+- Displays connection information, `ping` and `room-id`.
+- Adds UI next to leaderboard.
+
 ## Other Patches
 - Change name during respawn window.
 - Colorful Long Rainbow Trail.
