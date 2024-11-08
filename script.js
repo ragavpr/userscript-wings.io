@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.6-(5/Nov/2024)
+// @version     3.7-(8/Nov/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -13,7 +13,7 @@
 // @resource    default_profanity_blacklist     https://raw.githubusercontent.com/mogade/badwords/refs/heads/master/en.txt
 // @resource    wingsio_index_pаge              https://wings.io/
 // @resource    wingsio_index_page              https://gw6mc32y.pages.dev/source/index.html#sha256=b47f7772b08ff125efc1293526993b9ad50729f8a1e42fd1d92c2d5e13f526e8
-// @resource    feat-dark-theme                 https://gw6mc32y.pages.dev/patches/feat-dark-theme/patch.diff#sha256=35e84754d59ca2256588150fe1a0de3e5bc28eeb8fc6ba2977089addb1f3e322
+// @resource    feat-dark-theme                 https://gw6mc32y.pages.dev/patches/feat-dark-theme/patch.diff#sha256=d27f248fba284a0d257000ce7219954b0905c862139a7f42067e4089b2f42520
 // @resource    feat-profanity-filter           https://gw6mc32y.pages.dev/patches/feat-profanity-filter/patch.diff#sha256=69e9f1ef323baeb8aac7568ad9e430469def3319442b1e4f60380bd23dde41e8
 // @resource    feat-server-ping                https://gw6mc32y.pages.dev/patches/feat-server-ping/patch.diff#sha256=474e4e5d0a1a8a4e1c330a55f5ab5f3b7f7913b1dacd35630e1bcf96f62c26ad
 // @resource    mod-always-show-nickinput       https://gw6mc32y.pages.dev/patches/mod-always-show-nickinput/patch.diff#sha256=e9ace3789b4fd92b32878e7bc2ba382ce9465d9cba0bcff5e7bc07d199553983

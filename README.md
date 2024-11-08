@@ -6,7 +6,7 @@ and more...
 
 ## Dark Theme
 - Enabled by default.
-- Bombs may not be visible in the night good-luck.
+- Contains a moon, star-dust and dark stuff that comfort eyes in the dark.
 
 ## Profanity Filter
 - Enabled by default.
