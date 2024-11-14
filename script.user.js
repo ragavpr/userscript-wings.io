@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.8-(14/Nov/2024)
+// @version     3.9-(14/Nov/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -21,7 +21,7 @@
 // @resource    mod-disable-shake               https://gw6mc32y.pages.dev/patches/mod-disable-shake/patch.diff#sha256=e75676367ef61ec6ca486831335c839c23a086b412a3906f7e5c7057a35772d5
 // @resource    mod-mark-bots-with-color        https://gw6mc32y.pages.dev/patches/mod-mark-bots-with-color/patch.diff#sha256=5815ad548fee2bf94bced7ebef45e00b170bf00826bd6a43cad50411a7a95d53
 // @resource    mod-mark-bots-with-emoji        https://gw6mc32y.pages.dev/patches/mod-mark-bots-with-emoji/patch.diff#sha256=44df21c987f4d68f46a8a0b076ca91a83119ce600d079c54b00f4d925e71c406
-// @resource    mod-remove-leaderboard-limit    https://gw6mc32y.pages.dev/patches/mod-remove-leaderboard-limit/patch.diff#sha256=1543dfd89d2517af4aace201addb57fdd8d2f11559d8295422040f7fb5f32863
+// @resource    mod-remove-leaderboard-limit    https://gw6mc32y.pages.dev/patches/mod-remove-leaderboard-limit/patch.diff#sha256=6c9b16eef346e8da114a033ded4918c2e8c1c37b4e54bbee728d93e3cc588480
 // @license     AGPL-3.0-or-later
 // ==/UserScript==
 
