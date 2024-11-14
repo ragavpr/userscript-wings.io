@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        wings.io Patches
 // @namespace   http://tampermonkey.net/
-// @version     3.7-(8/Nov/2024)
+// @version     3.8-(14/Nov/2024)
 // @description | Dark Mode | Profanity Filter | and more... patches are designed to run on load, make required edits and reload
 // @author      ⟐Ragav
 // @icon        https://wings.io/images/favicon.png
@@ -94,7 +94,6 @@
   var observer = new MutationObserver(mutationRecords => {
     mutationRecords.every( record => {
       if (record.addedNodes[0]) {
-        document.write('');
         observer.disconnect();
         document.write(getPatchedPage());
         document.close();
